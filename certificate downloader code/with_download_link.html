@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base target="_top">
+</head>
+
+<body>
+  <style>
+    body {
+      margin-top: 20px;
+      background: white;
+    }
+    .content {
+      max-width: 500px;
+      margin-top: 10px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      font-family: Arial, sans-serif;
+    }
+
+    div {
+      display: grid;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    h6 {
+      margin: 0px;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"] {
+      padding: 6px;
+      margin-bottom: 15px;
+      width: 258px;
+    }
+
+    input[type="number"] {
+      padding: 5px;
+      margin-bottom: 10px;
+      width: 70px;
+    }
+
+    button {
+      padding: 8px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 26px 2px;
+      padding: 10px;
+      width: 170px;
+      border-radius: 30px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="text"][readonly] {
+      background-color: #f7f7f7;
+      border: 1px solid #ddd;
+    }
+  </style>
+  <div class="content">
+    <div>
+      <label for="name">Name:<h6>Enter your name accurately (case-sensitive)*</h6></label>
+      <input type="text" id="name">
+    </div>
+    <div>
+      <label for="certificateId">Certificate ID:<h6>(TT/SIP number)*</h6></label>
+      <input type="number" id="certificateId">
+    </div>
+    <div>
+      <button onclick="getDownloadLink()">Get Download Link</button>
+    </div>
+    <div>
+      <label for="downloadLink" style="margin-bottom: 14px;">Download Link:</label>
+      <a id="downloadLink" href="#" target="_blank"></a>
+    </div>
+  </div>
+  <script>
+    function getDownloadLink() {
+      var name = document.getElementById("name").value;
+      var certificateId = parseInt(document.getElementById("certificateId").value);
+
+      google.script.run.withSuccessHandler(function (link) {
+        var downloadLinkElement = document.getElementById("downloadLink");
+        downloadLinkElement.href = link; // Set the link as the href attribute
+        downloadLinkElement.textContent = link; // Set the anchor text
+      }).getDownloadLink(name, certificateId);
+    }
+  </script>
+</body>
+</html>

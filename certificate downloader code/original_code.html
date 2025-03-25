@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+</head>
+
+<body>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      padding: 5px;
+      margin-bottom: 10px;
+      width: 200px;
+    }
+
+    button {
+      padding: 8px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="text"][readonly] {
+      background-color: #f7f7f7;
+      border: 1px solid #ddd;
+    } 
+     
+  </style>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name">
+  </div>
+  <div>
+    <label for="certificateId">Certificate ID:</label>
+    <input type="number" id="certificateId">
+  </div>
+  <div>
+    <button onclick="getDownloadLink()">Get Download Link</button>
+  </div>
+  <div>
+    <label for="downloadLink">Download Link:</label>
+    <input type="text" id="downloadLink" readonly>
+  </div>
+
+  <script>
+    function getDownloadLink() {
+      var name = document.getElementById("name").value;
+      var certificateId = parseInt(document.getElementById("certificateId").value);
+
+      google.script.run.withSuccessHandler(function (link) {
+        document.getElementById("downloadLink").value = link;
+      }).getDownloadLink(name, certificateId);
+    }
+  </script>
+</body>
+
+</html>
