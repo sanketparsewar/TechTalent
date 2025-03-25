@@ -1,0 +1,4 @@
+To seperate timestamp and date
+=TEXT(E4, "dd/mm/yyyy")
+
+-----------------------------------------------

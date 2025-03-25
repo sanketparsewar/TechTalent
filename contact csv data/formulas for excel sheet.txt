@@ -1,0 +1,10 @@
+Extract Last Word Using Formulas:
+
+In cell K1 (assuming your data starts from A1), enter the formula to extract the last word:
+=TRIM(RIGHT(SUBSTITUTE(J1," ",REPT(" ",LEN(J1))),LEN(J1)))
+
+Remaining Content Using Formulas:
+In cell L1, enter the formula to get the remaining content without the last word:
+=SUBSTITUTE(J1, K1, "")
+
+---------------------------------------------------------------
